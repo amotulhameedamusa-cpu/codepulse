@@ -17,7 +17,7 @@ def send_push(sub: dict, title: str, body: str, url: str = "dashboard.html") -> 
                 "keys": {"p256dh": sub["p256dh"], "auth": sub["auth"]},
             },
             data=json.dumps({"title": title, "body": body, "url": url}),
-            vapid_private_key="private_key.pem",
+            vapid_private_key=os.environ.get("VAPID_KEY_FILE", "private_key.pem"),
             vapid_claims=dict(VAPID_CLAIMS),
         )
         db.mark_sent(sub["endpoint"])

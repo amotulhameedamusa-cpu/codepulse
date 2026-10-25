@@ -1,4 +1,5 @@
 import asyncio
+import os
 import base64
 from typing import Optional
 
@@ -124,7 +125,7 @@ def write_session(session: SessionIn, user: dict = Depends(auth.get_current_user
 
 def get_public_key_b64() -> str:
     """Browsers want the public key as URL-safe base64, no padding."""
-    with open("private_key.pem", "rb") as f:
+    with open(os.environ.get("VAPID_KEY_FILE", "private_key.pem"), "rb") as f:
         private_key = serialization.load_pem_private_key(f.read(), password=None)
     raw = private_key.public_key().public_bytes(
         serialization.Encoding.X962,
