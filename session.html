@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePulse | Coding Session</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/session.css" />
+</head>
+<body class="focus-body">
+  <main class="focus-page">
+    <h1>You're in the zone.</h1>
+    <p class="focus-sub">Focus on your work. We'll keep track of the time.</p>
+
+    <div class="focus-block">
+      <div class="focus-label">What are you working on?</div>
+      <div class="chips" id="topic-chips"><!-- filled in by session.js, based on onboarding --></div>
+    </div>
+
+    <div class="timer" id="timer">00:00:00</div>
+
+    <div class="status">
+      <span class="status-dot"></span>
+      Session in progress
+    </div>
+
+    <div class="focus-block">
+      <div class="focus-label">What are you doing?</div>
+      <div class="chips" id="activity-chips">
+        <div class="chip-option" data-value="Learning">Learning</div>
+        <div class="chip-option" data-value="Building">Building</div>
+        <div class="chip-option" data-value="Debugging">Debugging</div>
+        <div class="chip-option" data-value="Practicing">Practicing</div>
+        <div class="chip-option" data-value="Revising">Revising</div>
+      </div>
+    </div>
+
+    <button class="end-btn" id="end-btn" disabled>End Session</button>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/session.js"></script>
+</body>
+</html>

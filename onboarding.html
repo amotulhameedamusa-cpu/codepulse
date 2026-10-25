@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("codepulse_theme") || "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePulse | Profile setup</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/onboarding.css" />
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 12 8 12 10.5 6 14 18 16.5 12 21 12" />
+            </svg>
+          </span>
+          CodePulse
+        </div>
+
+        <div class="eyebrow">YOUR SETUP</div>
+        <h2>Make every coding session count.</h2>
+        <p>We'll shape your accountability plan around your skills, goals, and schedule.</p>
+      </div>
+
+      <div class="rhythm">
+        <div class="rhythm-head">
+          <span>Weekly rhythm</span>
+          <span class="status">On track</span>
+        </div>
+        <div class="bars">
+          <div class="bar" style="height: 34px"></div>
+          <div class="bar" style="height: 52px"></div>
+          <div class="bar" style="height: 30px"></div>
+          <div class="bar" style="height: 66px"></div>
+          <div class="bar" style="height: 84px"></div>
+          <div class="bar light" style="height: 44px"></div>
+          <div class="bar light" style="height: 20px"></div>
+        </div>
+        <div class="days">
+          <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="topbar">
+        <strong>Profile setup</strong>
+        <span>Step 1 of 2</span>
+        <div class="progress"><span></span></div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+
+      <div class="content">
+        <span class="pill">Personalize your experience</span>
+        <h1>Let's build your coding rhythm</h1>
+        <p class="lead">
+          Tell us where you are and where you want to go. Your answers help us create goals that feel achievable.
+        </p>
+
+        <div class="questions">
+
+          <!-- 01 Level -->
+          <section data-question="level">
+            <div class="q-head">
+              <span class="q-num">01</span>
+              <div>
+                <h3>What's your coding level?</h3>
+                <p>Choose the option that feels most like you.</p>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="option" data-value="just-starting">
+                <span class="radio"></span>
+                <span><span class="title">Just starting</span><span class="sub">I'm learning the foundations</span></span>
+              </div>
+              <div class="option" data-value="beginner">
+                <span class="radio"></span>
+                <span><span class="title">Beginner</span><span class="sub">I've built a few small projects</span></span>
+              </div>
+              <div class="option" data-value="intermediate">
+                <span class="radio"></span>
+                <span><span class="title">Intermediate</span><span class="sub">I code with confidence</span></span>
+              </div>
+              <div class="option" data-value="advanced">
+                <span class="radio"></span>
+                <span><span class="title">Advanced</span><span class="sub">I'm sharpening my expertise</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 Learning -->
+          <section data-question="learning">
+            <div class="q-head">
+              <span class="q-num">02</span>
+              <div>
+                <h3>What are you learning?</h3>
+                <p>Pick your current area of focus.</p>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="option" data-value="web-development">
+                <span class="radio"></span><span class="title">Web development</span>
+              </div>
+              <div class="option" data-value="data-ai">
+                <span class="radio"></span><span class="title">Data &amp; AI</span>
+              </div>
+              <div class="option" data-value="mobile-apps">
+                <span class="radio"></span><span class="title">Mobile apps</span>
+              </div>
+              <div class="option" data-value="computer-science">
+                <span class="radio"></span><span class="title">Computer science</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="footer">
+          <span>You can update these preferences anytime in Settings.</span>
+          <button class="btn" id="continue-btn" data-next="onboarding2.html" disabled>Continue &rarr;</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/onboarding.js"></script>
+</body>
+</html>

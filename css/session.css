@@ -1,0 +1,156 @@
+/* This screen is deliberately always-dark ("focus mode"), independent of
+   the app's light/dark toggle -- distraction-free while a session runs. */
+
+body.focus-body {
+  background: #0a0e16;
+}
+
+.focus-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 90px 24px 60px;
+  text-align: center;
+}
+
+.focus-page h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #f3f5f9;
+}
+
+.focus-sub {
+  margin-top: 14px;
+  font-size: 1.15rem;
+  color: #7c8598;
+}
+
+.focus-block {
+  margin-top: 56px;
+}
+
+.focus-label {
+  margin-bottom: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #565f72;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.chip-option {
+  padding: 12px 24px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #aab1c2;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.chip-option:hover {
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.chip-option.selected {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.5);
+}
+
+.chip-input {
+  width: 120px;
+  padding: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #eef1f6;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.chip-input::placeholder {
+  color: #6b7486;
+}
+
+.timer {
+  margin: 56px 0 24px;
+  font-size: clamp(4rem, 12vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #eef1f6;
+  font-variant-numeric: tabular-nums;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7c8598;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.end-btn {
+  margin-top: 56px;
+  padding: 15px 40px;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #061912;
+  background: #34d399;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.end-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.end-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+@media (max-width: 520px) {
+  .focus-page {
+    padding-top: 60px;
+  }
+  .focus-block {
+    margin-top: 40px;
+  }
+  .timer {
+    margin: 40px 0 20px;
+  }
+}

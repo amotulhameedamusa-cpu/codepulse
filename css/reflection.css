@@ -1,0 +1,229 @@
+.reflection-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 89px);
+  padding: 56px 24px 70px;
+  text-align: center;
+}
+
+.reflection-page h1 {
+  font-size: clamp(2.2rem, 4.6vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.reflection-sub {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* ---------- Duration box ---------- */
+.duration-box {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 44px;
+  padding: 22px 40px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.duration-box .value {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--blue);
+}
+
+.duration-box .unit {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.divider {
+  width: 70px;
+  height: 1px;
+  margin: 44px 0;
+  background: var(--border);
+}
+
+/* ---------- Field blocks ---------- */
+.field-block {
+  width: 100%;
+  max-width: 620px;
+}
+
+.field-block + .field-block {
+  margin-top: 44px;
+}
+
+.field-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field-note {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Accomplishment chips ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.chip-option {
+  padding: 12px 24px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.chip-option:hover {
+  border-color: var(--blue);
+}
+
+.chip-option.selected {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+/* ---------- Mood cards ---------- */
+.moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.mood-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 128px;
+  padding: 24px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.mood-card .emoji {
+  font-size: 1.9rem;
+}
+
+.mood-card .label {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.mood-card:hover {
+  border-color: var(--blue);
+}
+
+.mood-card.selected {
+  background: var(--blue-light);
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.mood-card.selected .label {
+  color: var(--blue);
+}
+
+/* ---------- Note ---------- */
+textarea#note-input {
+  width: 100%;
+  min-height: 130px;
+  margin-top: 20px;
+  padding: 18px 20px;
+  font: inherit;
+  font-size: 0.98rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+
+textarea#note-input::placeholder {
+  color: var(--muted);
+}
+
+textarea#note-input:focus {
+  border-color: var(--blue);
+}
+
+/* ---------- Save / discard ---------- */
+.save-btn {
+  width: 100%;
+  max-width: 620px;
+  margin-top: 44px;
+  padding: 18px;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--blue);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.save-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.discard-link {
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.discard-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .reflection-page {
+    padding-top: 40px;
+  }
+  .mood-card {
+    width: 100px;
+  }
+}

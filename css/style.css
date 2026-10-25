@@ -1,0 +1,314 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ---------- Design tokens ---------- */
+:root {
+  --blue: #10b981;
+  --blue-dark: #059669;
+  --blue-light: rgba(16, 185, 129, 0.12);
+  --accent2: #34d399;
+  --bg: #f5fbf8;
+  --surface: #ffffff;
+  --border: #d9f2e6;
+  --text: #14201a;
+  --muted: #6b8078;
+  --green: #16a34a;
+  --green-light: #e6f7ec;
+  --radius: 14px;
+  --shadow: 0 10px 24px rgba(16, 185, 129, 0.16);
+  color-scheme: light;
+
+  /* Secondary tokens for details that differ more between light/dark
+     than a simple accent swap (gradients, tints, chart bars) */
+  --hero-grad-1: #eafbf3;
+  --hero-grad-2: #f5fbf8;
+  --hero-grad-3: #ffffff;
+  --underline: #bdf0d6;
+  --streak-text: #ea580c;
+  --streak-bg: #fff3e8;
+  --chart-track: #eef8f3;
+  --chart-fill-light: #a7e8c9;
+  --chart-fill-pale: #d7f3e4;
+  --shadow-soft: 0 10px 30px rgba(20, 32, 22, 0.08);
+  --shadow-accent: 0 24px 60px rgba(16, 185, 129, 0.18);
+  --radio-border-color: #bfe6d2;
+  --rhythm-bar-light: #bfe6d2;
+}
+
+:root[data-theme="dark"] {
+  --blue: #34d399;
+  --blue-dark: #10b981;
+  --blue-light: rgba(52, 211, 153, 0.18);
+  --accent2: #6ee7b7;
+  --bg: #0e1712;
+  --surface: #16211c;
+  --border: #23342b;
+  --text: #eaf5ef;
+  --muted: #93a89c;
+  --green: #34d399;
+  --green-light: rgba(52, 211, 153, 0.16);
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+
+  --hero-grad-1: #16211c;
+  --hero-grad-2: #0e1712;
+  --hero-grad-3: #0a100c;
+  --underline: #1f4a36;
+  --streak-text: #fb923c;
+  --streak-bg: rgba(249, 115, 22, 0.15);
+  --chart-track: #17241d;
+  --chart-fill-light: #2c5943;
+  --chart-fill-pale: #203228;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-accent: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --radio-border-color: #2c4436;
+  --rhythm-bar-light: #2c4436;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--blue);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--blue);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btn:hover {
+  background: var(--blue-dark);
+  transform: translateY(-1px);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+/* ---------- Selectable option (used in onboarding) ---------- */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.option:hover {
+  border-color: var(--blue);
+}
+
+.option.selected {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+
+/* ---------- Pill / badge ---------- */
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--blue);
+  background: var(--blue-light);
+  border-radius: 999px;
+}
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--blue);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* ---------- Bottom tab bar (mobile) ---------- */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 10px 8px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.bottom-nav a,
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.bottom-nav a svg {
+  width: 22px;
+  height: 22px;
+}
+
+.bottom-nav a.active {
+  color: var(--blue);
+}
+
+.bottom-nav-plus-wrap {
+  margin-top: -30px;
+}
+
+.bottom-nav-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  color: #fff;
+  background: var(--blue);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.bottom-nav-plus svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 760px) {
+  .bottom-nav {
+    display: flex;
+  }
+  body.has-bottom-nav {
+    padding-bottom: 76px;
+  }
+  .header .nav a:not(.settings-link) {
+    display: none;
+  }
+}
+
+/* ---------- Settings (gear) link in the header ---------- */
+.nav .settings-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  flex-shrink: 0;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.nav .settings-link:hover {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--blue);
+}
+
+.nav .settings-link.active {
+  color: var(--blue);
+  background: var(--surface);
+  border-color: var(--blue);
+}
+
+.nav .settings-link svg {
+  width: 18px;
+  height: 18px;
+}

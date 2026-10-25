@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("codepulse_theme") || "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePulse</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/welcome.css" />
+</head>
+<body>
+  <div class="w-page">
+
+    <header class="w-header">
+      <div class="logo">
+        <span class="logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 12 8 12 10.5 6 14 18 16.5 12 21 12" />
+          </svg>
+        </span>
+        CodePulse
+      </div>
+      <div class="w-header-right">
+        <span class="w-tagline">Made for students who build <i class="dot"></i></span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="w-hero">
+      <!-- Left -->
+      <section class="w-left">
+        <span class="chip">&#10022; Turn effort into momentum</span>
+
+        <h1>Your coding journey deserves to be <span class="hl">tracked.</span></h1>
+
+        <p class="sub">Build consistency. See your progress. Keep moving.</p>
+
+        <div class="cta-row">
+          <a href="auth.html?mode=signup" id="start-btn" class="btn">Start My Journey &rarr;</a>
+          <span>Already have an account? <a href="auth.html?mode=login" class="login">Log in</a></span>
+        </div>
+
+        <ul class="checks">
+          <li>Track focused sessions</li>
+          <li>Build lasting habits</li>
+          <li>See real progress</li>
+        </ul>
+      </section>
+
+      <!-- Right -->
+      <section class="w-right">
+        <div class="preview-label">Progress you can feel</div>
+
+        <div class="preview">
+          <div class="preview-top">
+            <div>
+              <small>This week</small>
+              <h4>Your coding rhythm</h4>
+            </div>
+            <span class="streak">5 day streak</span>
+          </div>
+
+          <div class="chart">
+            <div class="col"><div class="track"><div class="fill" style="height: 45%"></div></div><span>M</span></div>
+            <div class="col"><div class="track"><div class="fill" style="height: 60%"></div></div><span>T</span></div>
+            <div class="col"><div class="track"><div class="fill" style="height: 38%"></div></div><span>W</span></div>
+            <div class="col"><div class="track"><div class="fill" style="height: 76%"></div></div><span>T</span></div>
+            <div class="col active"><div class="track"><div class="fill dark" style="height: 92%"></div></div><span>F</span></div>
+            <div class="col"><div class="track"><div class="fill pale" style="height: 55%"></div></div><span>S</span></div>
+            <div class="col"><div class="track"><div class="fill pale" style="height: 34%"></div></div><span>S</span></div>
+          </div>
+
+          <div class="preview-stats">
+            <div><small>Focus time</small><strong>8h 24m</strong></div>
+            <div><small>Sessions</small><strong>12</strong></div>
+          </div>
+
+          <div class="float-session">
+            <span class="tick">&#10003;</span>
+            <div>
+              <strong>Session complete</strong>
+              <small>48 min focused</small>
+            </div>
+          </div>
+
+          <div class="float-consistency">
+            <small>&#10022; Consistency</small>
+            <strong>+18%</strong>
+            <small>from last week</small>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="w-footer">
+      <span>Small sessions. Real momentum.</span>
+      <span>Built for the next generation of developers.</span>
+    </footer>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+   <script>
+    // Returning users who are logged in and finished setup skip to the dashboard
+    // (add ?preview to the address to see the welcome page anyway)
+    (async function () {
+      if (new URLSearchParams(window.location.search).has("preview")) return;
+      if (!Auth.isLoggedIn()) return;
+      try {
+        const saved = await Storage.getProfile(true);
+        if (saved) window.location.href = "dashboard.html";
+      } catch (err) { /* server unreachable: stay on the welcome page */ }
+    })();
+  </script>
+</body>
+</html>

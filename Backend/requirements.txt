@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic[email]
+bcrypt>=5.0.0
+pyjwt>=2.10.0
+pywebpush>=2.0.0
+cryptography
+psycopg[binary]>=3.2.0
+python-dotenv>=1.0.0

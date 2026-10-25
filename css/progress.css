@@ -1,0 +1,198 @@
+.progress-page h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.progress-page .lead {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+/* ---------- Week selector ---------- */
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.week-nav button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.week-nav button:hover {
+  border-color: var(--blue);
+}
+
+.week-nav button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.week-nav button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.week-range {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.week-range .this-week {
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--blue);
+}
+
+/* ---------- Stat cards (reuses .stats / .stat from dashboard.css) ---------- */
+.stats {
+  margin-top: 20px;
+}
+
+/* ---------- Daily chart ---------- */
+.chart-card {
+  margin-top: 20px;
+}
+
+.chart-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.daily-chart {
+  width: 100%;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: 150px;
+  overflow: visible;
+}
+
+.chart-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.chart-area {
+  fill: var(--blue-light);
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  fill: var(--surface);
+  stroke: var(--blue);
+  stroke-width: 2;
+}
+
+.chart-dot.has-time {
+  fill: var(--blue);
+}
+
+.chart-dot.is-today {
+  stroke: var(--blue-dark);
+  stroke-width: 3;
+}
+
+.chart-value {
+  font-size: 10px;
+  font-weight: 600;
+  fill: var(--muted);
+  text-anchor: middle;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.chart-labels .day-tag {
+  flex: 1;
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+.chart-labels .day-tag.is-today {
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* ---------- Topic breakdown ---------- */
+.topic-card {
+  margin-top: 20px;
+}
+
+.topic-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.topic-row {
+  margin-bottom: 14px;
+}
+
+.topic-row:last-child {
+  margin-bottom: 0;
+}
+
+.topic-row-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.topic-row-head .name {
+  font-weight: 600;
+}
+
+.topic-row-head .time {
+  color: var(--muted);
+}
+
+.topic-bar-track {
+  height: 8px;
+  background: var(--bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.topic-bar-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 999px;
+}
+
+@media (max-width: 560px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,222 @@
+.history-page h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.history-page .lead {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+/* ---------- Progress summary card ---------- */
+.progress-card {
+  margin-top: 24px;
+  padding: 22px 24px;
+  background: var(--blue-light);
+  border-radius: 18px;
+}
+
+.progress-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+
+.progress-card-head svg {
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
+}
+
+.progress-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.progress-stat strong {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.progress-stat span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.progress-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+.progress-note {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+}
+
+/* ---------- Sessions header ---------- */
+.sessions-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 36px;
+}
+
+.sessions-head h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.sessions-head .muted-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Filter chips ---------- */
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.filter-chip {
+  padding: 9px 18px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.filter-chip:hover {
+  border-color: var(--blue);
+}
+
+.filter-chip.active {
+  color: var(--blue-dark);
+  background: var(--blue-light);
+  border-color: var(--blue);
+}
+
+/* ---------- Day group ---------- */
+.day-group {
+  margin-top: 30px;
+}
+
+.day-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.day-heading .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.day-group .session-card + .session-card {
+  margin-top: 14px;
+}
+
+/* ---------- Session card ---------- */
+.session-card {
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.session-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.session-card-top .topic {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.session-card-top .time-of-day {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.session-card-sub {
+  margin-top: 4px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.session-card-bottom {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.mood-badge {
+  flex-shrink: 0;
+  padding: 5px 11px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--streak-text);
+  background: var(--streak-bg);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.note-text {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  margin-top: 40px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-state a {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .progress-stats {
+    gap: 16px;
+  }
+}

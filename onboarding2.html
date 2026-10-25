@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("codepulse_theme") || "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePulse | Profile setup</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/onboarding.css" />
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar (same as step 1) -->
+    <aside class="sidebar">
+      <div>
+        <div class="logo">
+          <span class="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 12 8 12 10.5 6 14 18 16.5 12 21 12" />
+            </svg>
+          </span>
+          CodePulse
+        </div>
+
+        <div class="eyebrow">YOUR SETUP</div>
+        <h2>Make every coding session count.</h2>
+        <p>We'll shape your accountability plan around your skills, goals, and schedule.</p>
+      </div>
+
+      <div class="rhythm">
+        <div class="rhythm-head">
+          <span>Weekly rhythm</span>
+          <span class="status">On track</span>
+        </div>
+        <div class="bars">
+          <div class="bar" style="height: 34px"></div>
+          <div class="bar" style="height: 52px"></div>
+          <div class="bar" style="height: 30px"></div>
+          <div class="bar" style="height: 66px"></div>
+          <div class="bar" style="height: 84px"></div>
+          <div class="bar light" style="height: 44px"></div>
+          <div class="bar light" style="height: 20px"></div>
+        </div>
+        <div class="days">
+          <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="topbar">
+        <strong>Profile setup</strong>
+        <span>Step 2 of 2</span>
+        <div class="progress full"><span></span></div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+
+      <div class="content">
+        <span class="pill">Shape your routine</span>
+        <h1>Let's make your journey count.</h1>
+        <p class="lead">
+          Tell us about your goals and routine so CodePulse can help keep you accountable.
+        </p>
+
+        <div class="questions">
+
+          <!-- 01 Goal -->
+          <section data-question="goal">
+            <div class="q-head">
+              <span class="q-num">01</span>
+              <div>
+                <h3>What do you want to achieve?</h3>
+                <p>Choose the goal that matters most right now.</p>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="option" data-value="learn">
+                <span class="radio"></span><span class="title">Learn new skills</span>
+              </div>
+              <div class="option" data-value="build">
+                <span class="radio"></span><span class="title">Build projects</span>
+              </div>
+              <div class="option" data-value="career">
+                <span class="radio"></span><span class="title">Prepare for a career</span>
+              </div>
+              <div class="option" data-value="improve">
+                <span class="radio"></span><span class="title">Improve my coding skills</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 Frequency -->
+          <section data-question="frequency">
+            <div class="q-head">
+              <span class="q-num">02</span>
+              <div>
+                <h3>How often do you want to code?</h3>
+                <p>Set a pace you can maintain.</p>
+              </div>
+            </div>
+            <div class="grid one">
+              <div class="option" data-value="3">
+                <span class="radio"></span>
+                <span><span class="title">3&times; a week</span><span class="sub">A steady start</span></span>
+              </div>
+              <div class="option" data-value="5">
+                <span class="radio"></span>
+                <span><span class="title">5&times; a week</span><span class="sub">Build momentum</span></span>
+              </div>
+              <div class="option" data-value="7">
+                <span class="radio"></span>
+                <span><span class="title">Every day</span><span class="sub">Make it a habit</span></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 03 Time -->
+          <section data-question="time" class="span-2">
+            <div class="q-head">
+              <span class="q-num">03</span>
+              <div>
+                <h3>When do you usually prefer coding?</h3>
+                <p>Pick the time when you're most focused.</p>
+              </div>
+            </div>
+            <div class="grid four">
+              <div class="option" data-value="morning">
+                <span class="radio"></span><span class="title">Morning</span>
+              </div>
+              <div class="option" data-value="afternoon">
+                <span class="radio"></span><span class="title">Afternoon</span>
+              </div>
+              <div class="option" data-value="evening">
+                <span class="radio"></span><span class="title">Evening</span>
+              </div>
+              <div class="option" data-value="night">
+                <span class="radio"></span><span class="title">Night</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="footer">
+          <a href="onboarding.html" class="btn btn-outline">&larr; Back</a>
+          <button class="btn" id="continue-btn" data-next="dashboard.html" disabled>Finish Setup &rarr;</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/onboarding.js"></script>
+</body>
+</html>

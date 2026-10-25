@@ -1,0 +1,315 @@
+/* ---------- Layout ---------- */
+.shell {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  background: linear-gradient(180deg, var(--blue-light) 0%, var(--bg) 100%);
+  border-right: 1px solid var(--border);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 70px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--blue);
+}
+
+.sidebar h2 {
+  margin: 20px 0 16px;
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sidebar p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Weekly rhythm card ---------- */
+.rhythm {
+  padding: 22px;
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.rhythm-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.status {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  border-radius: 999px;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100px;
+  margin-top: 24px;
+}
+
+.bar {
+  width: 22px;
+  border-radius: 999px;
+  background: var(--blue);
+}
+
+.bar.light {
+  background: var(--rhythm-bar-light);
+}
+
+.days {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.days span {
+  width: 22px;
+  text-align: center;
+}
+
+/* ---------- Main ---------- */
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 64px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.topbar strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.progress {
+  width: 100px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  width: 50%;
+  height: 100%;
+  background: var(--blue);
+  border-radius: 999px;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 32px 0;
+}
+
+.content h1 {
+  margin: 18px 0 12px;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+/* ---------- Questions ---------- */
+.questions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 48px;
+  margin-top: 36px;
+}
+
+.q-head {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.q-num {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-light);
+  border-radius: 50%;
+}
+
+.q-head h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.q-head p {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.grid.one {
+  grid-template-columns: 1fr;
+}
+
+/* ---------- Option card (extends .option from style.css) ---------- */
+.option {
+  align-items: flex-start;
+  padding: 14px 16px;
+}
+
+.radio {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--radio-border-color);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.option.selected .radio {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.option.selected .radio::after {
+  content: "\2713";
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.option .title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.option .sub {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+  .topbar {
+    padding: 20px 24px;
+  }
+  .questions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Step 2 additions ---------- */
+.progress.full span {
+  width: 100%;
+}
+
+.span-2 {
+  grid-column: 1 / -1;
+}
+
+.grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.btn-outline {
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: var(--bg);
+}
+
+@media (max-width: 900px) {
+  .grid.four {
+    grid-template-columns: 1fr 1fr;
+  }
+}

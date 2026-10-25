@@ -1,0 +1,200 @@
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav a {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  border-radius: 8px;
+}
+
+.nav a:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+
+.nav a.active {
+  color: var(--blue);
+  background: var(--blue-light);
+}
+
+/* ---------- Page ---------- */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 32px 60px;
+}
+
+.greeting h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.greeting p {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 28px;
+  background: linear-gradient(135deg, rgba(77, 123, 255, 0.2), var(--surface));
+  box-shadow: var(--shadow);
+}
+
+.hero h3 {
+  font-size: 1.15rem;
+}
+
+.hero p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Stats ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.stat .label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.stat .value {
+  margin-top: 6px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Two column ---------- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.progress-track {
+  height: 10px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--blue);
+  border-radius: 999px;
+  transition: width 0.4s;
+}
+
+.progress-text {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.focus-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.focus-note {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Recent sessions ---------- */
+.recent {
+  margin-top: 16px;
+}
+
+.session-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.session-row:last-child {
+  border-bottom: none;
+}
+
+.session-row .topic {
+  font-weight: 600;
+}
+
+.session-row .meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.session-row .right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.session-row .mood {
+  font-size: 1.1rem;
+}
+
+.session-row .time {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.empty {
+  padding: 12px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .header {
+    padding: 16px 20px;
+  }
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stats,
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}

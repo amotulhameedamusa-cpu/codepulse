@@ -1,0 +1,15 @@
+# secrets: never commit these
+.env
+*.pem
+secret.key
+
+# local database files
+*.db
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store

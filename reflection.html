@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("codepulse_theme") || "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePulse | Session Reflection</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/reflection.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <span class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 12 8 12 10.5 6 14 18 16.5 12 21 12" />
+        </svg>
+      </span>
+      CodePulse
+    </div>
+    <nav class="nav">
+      <a href="dashboard.html">Dashboard</a>
+       <a href="progress.html">Progress</a>
+      <a href="history.html">History</a>
+      <a href="settings.html" class="settings-link" aria-label="Settings" title="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="reflection-page">
+    <h1>Session complete &#127881;</h1>
+    <p class="reflection-sub">Nice work. Here's a quick reflection on your session.</p>
+
+    <div class="duration-box" id="duration-box">
+      <span class="value" id="duration-value">0</span>
+      <span class="unit" id="duration-unit">seconds</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-block">
+      <div class="field-label">What did you accomplish?</div>
+      <div class="chips" id="accomplish-chips">
+        <div class="chip-option" data-value="Learned">Learned</div>
+        <div class="chip-option" data-value="Built">Built</div>
+        <div class="chip-option" data-value="Debugged">Debugged</div>
+        <div class="chip-option" data-value="Practiced">Practiced</div>
+        <div class="chip-option" data-value="Revised">Revised</div>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">How did it go?</div>
+      <div class="moods" id="mood-options">
+        <div class="mood-card" data-value="tough">
+          <span class="emoji">&#128555;</span>
+          <span class="label">Struggled</span>
+        </div>
+        <div class="mood-card" data-value="okay">
+          <span class="emoji">&#128528;</span>
+          <span class="label">Okay</span>
+        </div>
+        <div class="mood-card" data-value="good">
+          <span class="emoji">&#128578;</span>
+          <span class="label">Good</span>
+        </div>
+        <div class="mood-card" data-value="great">
+          <span class="emoji">&#128293;</span>
+          <span class="label">Great</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <div class="field-label">Anything worth remembering?</div>
+      <div class="field-note">optional</div>
+      <textarea id="note-input" placeholder="What did you learn, accomplish, or struggle with?"></textarea>
+    </div>
+
+    <button class="save-btn" id="save-btn" disabled>Save Session &rarr;</button>
+    <button class="discard-link" id="discard-btn">Discard session</button>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/reflection.js"></script>
+</html>
