@@ -31,6 +31,7 @@ const MESSAGES = {
   401: "Incorrect email or password.",
   409: "That email is already registered. Try logging in.",
   422: "Enter a valid email and a password of 8 to 72 characters.",
+  429: "Too many attempts. Please wait 15 minutes and try again.",
 };
 
 form.addEventListener("submit", async (e) => {

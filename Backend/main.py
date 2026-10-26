@@ -2,11 +2,12 @@ import asyncio
 import base64
 import os
 import secrets
-from fastapi import Depends, FastAPI, Header, HTTPException
+import time
+from collections import defaultdict
 from typing import Optional
 
 from cryptography.hazmat.primitives import serialization
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
@@ -20,7 +21,7 @@ import scheduler
 class SessionIn(BaseModel):
     topic: str
     activity: str
-    durationSec: int = Field(ge=0, le=86400)  # 0 to 24 hours
+    durationSec: int = Field(ge=0, le=86400)
     accomplished: Optional[str] = ""
     mood: Optional[str] = ""
     note: Optional[str] = ""
@@ -33,6 +34,7 @@ class Profile(BaseModel):
     frequency: str
     time: str
     timezone: Optional[str] = Field(default=None, max_length=64)
+
 
 class PushKeys(BaseModel):
     p256dh: str
@@ -55,17 +57,17 @@ class Credentials(BaseModel):
     @field_validator("password")
     @classmethod
     def password_fits_bcrypt(cls, value: str) -> str:
-        # bcrypt only accepts 72 BYTES, and some characters take more than one
-        if len(value.encode()) > 72:
+        # bcrypt only handles 72 bytes; some characters take more than one byte
+        if len(value.encode("utf-8")) > 72:
             raise ValueError("Password is too long")
         return value
 
 
 # ---------- App setup ----------
 
-app = FastAPI()
 ALLOWED_ORIGINS = [o.strip() for o in os.environ.get("ALLOWED_ORIGINS", "*").split(",")]
 
+app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
@@ -80,12 +82,26 @@ async def on_startup():
     if os.environ.get("DISABLE_SCHEDULER") != "1":
         asyncio.create_task(scheduler.run_forever())
 
+
 @app.get("/")
 def read_root():
     return {"status": "CodePulse API is running"}
 
 
 # ---------- Accounts ----------
+
+FAILED_LOGINS = defaultdict(list)  # email -> times of recent failed attempts
+MAX_FAILS = 5
+WINDOW_SEC = 15 * 60
+
+
+def check_login_allowed(email: str):
+    now = time.time()
+    recent = [t for t in FAILED_LOGINS[email] if now - t < WINDOW_SEC]
+    FAILED_LOGINS[email] = recent
+    if len(recent) >= MAX_FAILS:
+        raise HTTPException(status_code=429, detail="Too many attempts. Try again later.")
+
 
 @app.post("/api/signup")
 def signup(creds: Credentials):
@@ -97,9 +113,13 @@ def signup(creds: Credentials):
 
 @app.post("/api/login")
 def login(creds: Credentials):
-    user = db.get_user_by_email(creds.email)
+    email = creds.email.strip().lower()
+    check_login_allowed(email)
+    user = db.get_user_by_email(email)
     if not user or not auth.verify_password(creds.password, user["password_hash"]):
+        FAILED_LOGINS[email].append(time.time())
         raise HTTPException(status_code=401, detail="Incorrect email or password")
+    FAILED_LOGINS.pop(email, None)  # a good login clears the counter
     return {"token": auth.create_token(user["id"])}
 
 
@@ -153,6 +173,9 @@ def push_subscribe(sub: PushSubscription, user: dict = Depends(auth.get_current_
 def push_unsubscribe(body: PushUnsubscribe, user: dict = Depends(auth.get_current_user)):
     db.delete_subscription(user["id"], body.endpoint)
     return {"status": "unsubscribed"}
+
+
+# ---------- Reminder timer (called by an outside cron service) ----------
 
 @app.post("/api/cron/send-reminders")
 async def cron_send_reminders(x_cron_secret: str = Header(default="")):
