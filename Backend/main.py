@@ -1,6 +1,8 @@
 import asyncio
-import os
 import base64
+import os
+import secrets
+from fastapi import Depends, FastAPI, Header, HTTPException
 from typing import Optional
 
 from cryptography.hazmat.primitives import serialization
@@ -73,8 +75,8 @@ app.add_middleware(
 @app.on_event("startup")
 async def on_startup():
     db.init_db()
-    asyncio.create_task(scheduler.run_forever())
-
+    if os.environ.get("DISABLE_SCHEDULER") != "1":
+        asyncio.create_task(scheduler.run_forever())
 
 @app.get("/")
 def read_root():
@@ -149,3 +151,11 @@ def push_subscribe(sub: PushSubscription, user: dict = Depends(auth.get_current_
 def push_unsubscribe(body: PushUnsubscribe, user: dict = Depends(auth.get_current_user)):
     db.delete_subscription(user["id"], body.endpoint)
     return {"status": "unsubscribed"}
+
+@app.post("/api/cron/send-reminders")
+async def cron_send_reminders(x_cron_secret: str = Header(default="")):
+    expected = os.environ.get("CRON_SECRET", "")
+    if not expected or not secrets.compare_digest(x_cron_secret.encode(), expected.encode()):
+        raise HTTPException(status_code=401, detail="Not allowed")
+    await asyncio.to_thread(scheduler.check_and_send)
+    return {"status": "done"}
