@@ -1,5 +1,6 @@
 import asyncio
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import database as db
 import push
@@ -18,8 +19,17 @@ def pick_message(days_silent):
     return None
 
 
+def in_user_timezone(profile: dict, now: datetime) -> datetime:
+    """Convert 'now' to the user's own timezone, or leave it as is if unknown."""
+    try:
+        return now.astimezone(ZoneInfo(profile["timezone"]))
+    except Exception:
+        return now
+
+
 def check_user(profile: dict, now: datetime):
     """Decide whether this one user gets a reminder right now."""
+    now = in_user_timezone(profile, now)
     user_id = profile["user_id"]
 
     hour = REMINDER_HOURS.get(profile["time"], 19)
@@ -28,7 +38,7 @@ def check_user(profile: dict, now: datetime):
 
     sessions = db.get_sessions(user_id)  # newest first
     if sessions:
-        last = datetime.fromisoformat(sessions[0]["date"]).astimezone().date()
+        last = datetime.fromisoformat(sessions[0]["date"]).astimezone(now.tzinfo).date()
         days_silent = (now.date() - last).days
     else:
         days_silent = 1  # brand-new user: treat like a normal daily reminder
@@ -42,7 +52,7 @@ def check_user(profile: dict, now: datetime):
 
     for sub in db.get_subscriptions(user_id):
         if sub["last_sent_at"]:
-            sent = datetime.fromisoformat(sub["last_sent_at"]).astimezone().date()
+            sent = datetime.fromisoformat(sub["last_sent_at"]).astimezone(now.tzinfo).date()
             if sent == now.date():
                 continue  # already reminded this browser today
         push.send_push(sub, message[0], message[1])

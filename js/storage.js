@@ -61,14 +61,15 @@ async function readJson(res) {
 
 const Storage = {
   async saveProfile(profile) {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const res = await apiFetch("/api/profile", {
       method: "POST",
       headers: JSON_HEADERS,
-      body: JSON.stringify(profile),
+      body: JSON.stringify({ ...profile, timezone }),
     });
     return readJson(res);
   },
-
+  
   // Pass quiet = true to skip the redirect-to-login on a bad token
   // (the welcome page uses this so it never bounces a visitor away).
   async getProfile(quiet = false) {

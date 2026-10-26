@@ -30,7 +30,7 @@ class Profile(BaseModel):
     goal: str
     frequency: str
     time: str
-
+    timezone: Optional[str] = Field(default=None, max_length=64)
 
 class PushKeys(BaseModel):
     p256dh: str

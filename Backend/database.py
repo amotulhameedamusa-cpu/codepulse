@@ -49,6 +49,7 @@ def init_db():
             )
             """
         )
+        conn.execute("ALTER TABLE profile ADD COLUMN IF NOT EXISTS timezone TEXT")
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS sessions (
@@ -122,19 +123,22 @@ def save_profile(user_id: int, data: dict):
     with get_connection() as conn:
         conn.execute(
             """
-            INSERT INTO profile (user_id, level, learning, goal, frequency, time)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO profile (user_id, level, learning, goal, frequency, time, timezone)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (user_id) DO UPDATE SET
                 level = EXCLUDED.level,
                 learning = EXCLUDED.learning,
                 goal = EXCLUDED.goal,
                 frequency = EXCLUDED.frequency,
-                time = EXCLUDED.time
+                time = EXCLUDED.time,
+                timezone = EXCLUDED.timezone
             """,
-            (user_id, data["level"], data["learning"], data["goal"], data["frequency"], data["time"]),
+            (
+                user_id, data["level"], data["learning"], data["goal"],
+                data["frequency"], data["time"], data.get("timezone"),
+            ),
         )
     return get_profile(user_id)
-
 
 def get_all_profiles() -> list[dict]:
     """Used by the reminder scheduler to loop over every user."""
