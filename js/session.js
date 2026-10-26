@@ -36,10 +36,30 @@ async function init() {
     // Server unreachable: fall back to the default topic chips
   }
   const topics = TOPIC_SETS[profile && profile.learning] || DEFAULT_TOPICS;
+
+  // Add topics you've logged before that aren't in the preset list
+  let pastTopics = [];
+  try {
+    const pastSessions = await Storage.getSessions(); // newest first
+    pastTopics = pastSessions.map((s) => s.topic);
+  } catch (err) {
+    // Server unreachable: just show the preset topics
+  }
+  const known = new Set(topics.map((t) => t.toLowerCase()));
+  const customTopics = [];
+  pastTopics.forEach((t) => {
+    const clean = (t || "").trim();
+    if (clean && !known.has(clean.toLowerCase())) {
+      known.add(clean.toLowerCase());
+      customTopics.push(clean);
+    }
+  });
+  const allTopics = [...topics, ...customTopics.slice(0, 6)];
+
   const topicContainer = document.getElementById("topic-chips");
 
   topicContainer.innerHTML = "";
-  topics.forEach((topic) => {
+  allTopics.forEach((topic) => {
     const chip = document.createElement("div");
     chip.className = "chip-option";
     chip.dataset.value = topic;
