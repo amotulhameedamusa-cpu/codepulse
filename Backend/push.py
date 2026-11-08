@@ -19,6 +19,8 @@ def send_push(sub: dict, title: str, body: str, url: str = "dashboard.html") -> 
             data=json.dumps({"title": title, "body": body, "url": url}),
             vapid_private_key=os.environ.get("VAPID_KEY_FILE", "private_key.pem"),
             vapid_claims=dict(VAPID_CLAIMS),
+            ttl=86400,  # let the push service hold the message for 24h if the device is offline
+            headers={"Urgency": "high"},  # ask phones to wake up for it
         )
         db.mark_sent(sub["endpoint"])
         return True
