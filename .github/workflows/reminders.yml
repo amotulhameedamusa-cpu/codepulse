@@ -1,0 +1,16 @@
+name: Send reminders
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the reminders endpoint
+        run: |
+          curl --fail-with-body -sS --max-time 120 -X POST \
+            -H "X-Cron-Secret: ${{ secrets.CRON_SECRET }}" \
+            https://codepulse-api-jxir.onrender.com/api/cron/send-reminders
