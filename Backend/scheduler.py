@@ -9,13 +9,21 @@ REMINDER_HOURS = {"morning": 8, "afternoon": 14, "evening": 19, "night": 21}
 
 
 def pick_message(days_silent):
-    """Return (title, body), or None if today is a quiet day."""
+    """Return (title, body), or None if today is a quiet day.
+
+    Gentle back-off: daily for the first 3 days, then days 5 and 7,
+    then once a week until day 28, then silence.
+    """
     if days_silent <= 1:
         return ("Time to code", "Your session is waiting. Even 20 minutes keeps the momentum.")
+    if days_silent == 2:
+        return ("Keep your momentum", "Two days off. A short session today gets you back on track.")
     if days_silent == 3:
         return ("Still there?", "It's been 3 days. Even 10 minutes counts.")
-    if days_silent >= 7 and days_silent % 7 == 0:
+    if days_silent in (5, 7):
         return ("We miss you", "A short session today restarts your momentum.")
+    if days_silent in (14, 21, 28):
+        return ("Still on your list", "Your coding journey is waiting whenever you're ready.")
     return None
 
 
